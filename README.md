@@ -18,20 +18,22 @@ Is this good? For delivery time prediction - yes, it's a decent result. Most fac
 
 ## Project Structure
 
+```
 ├── main
 ├── screenshots/
 │   ├── feature-importance.png
 │   ├── geographic-distribution-of-anomalies.png
 │   └── metrics-and-delivery-simulator.png
 ├── src/
-│   ├── loader.py          # Data fetching from Kaggle
-│   ├── processing.py      # Cleaning + feature engineering
-│   ├── model.py           # Anomaly detection (Isolation Forest)
-│   ├── prediction.py      # XGBoost model
-│   └── dashboard.py       # Streamlit interface
+│   ├── loader.py           # Data fetching from Kaggle
+│   ├── processing.py       # Cleaning + feature engineering
+│   ├── model.py            # Anomaly detection (Isolation Forest)
+│   ├── prediction.py       # XGBoost model
+│   └── dashboard.py        # Streamlit interface
 ├── models/                 # Saved models (.pkl)
 ├── Dockerfile
 └── requirements.txt
+```
 
 ## Key Model Features
 
@@ -78,7 +80,7 @@ Dashboard will be available at `http://localhost:8501`
 ![Feature Importance](screenshots/feature-importance.png)
 
 ### Geographic Distribution of Anomalies
-![Geographic Distribution of Anomalies](screenshots/geographic-distrution-of-anomalies.png)
+![Geographic Distribution of Anomalies](screenshots/geographic-distribution-of-anomalies.png)
 
 ### Metrics and Delivery Simulator
 ![Metrics and Delivery Simulator](screenshots/metrics-and-delivery-simulator.png)
