@@ -78,10 +78,10 @@ Dashboard will be available at `http://localhost:8501`
 ![Feature Importance](screenshots/feature-importance.png)
 
 ### Geographic Distribution of Anomalies
-![Geographic Distribution of Anomalies](screenshots/geographic-distribution-of-anomalies.png)
+![Geographic Distribution of Anomalies](screenshots/geographic-distrution-of-anomalies.png)
 
 ### Metrics and Delivery Simulator
-![Metrics and Delivery Simulator](screenshots/Metrics-and-delivery-simulator.png)
+![Metrics and Delivery Simulator](screenshots/metrics-and-delivery-simulator.png)
 
 ## Dataset
 
