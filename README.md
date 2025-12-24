@@ -18,7 +18,11 @@ Is this good? For delivery time prediction - yes, it's a decent result. Most fac
 
 ## Project Structure
 
-├── main                    # Main script - model training
+├── main
+├── screenshots/
+│   ├── feature-importance.png
+│   ├── geographic-distribution-of-anomalies.png
+│   └── metrics-and-delivery-simulator.png
 ├── src/
 │   ├── loader.py          # Data fetching from Kaggle
 │   ├── processing.py      # Cleaning + feature engineering
