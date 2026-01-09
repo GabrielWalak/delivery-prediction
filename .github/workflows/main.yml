@@ -25,8 +25,8 @@ jobs:
 
       - name: Run Tests
         run: |
-          # Tutaj GitHub sprawdzi czy Twój kod działa
-          pytest tests/
+          # Używamy python -m pytest, aby uniknąć błędów z importem 'src'
+          python -m pytest tests/
 
   build-docker:
     needs: quality-and-tests
@@ -38,8 +38,5 @@ jobs:
         run: docker build -t delivery-api:latest .
 
       - name: Build Dashboard Image
-        run: docker build -f Dockerfile.streamlit -t delivery-dashboard:latest .
-
-      - name: Run Tests
-        run: |
-          python -m pytest tests/  
+        run: docker build -f Dockerfile.dashboard -t delivery-dashboard:latest .
+        
