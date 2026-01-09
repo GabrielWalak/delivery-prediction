@@ -39,3 +39,7 @@ jobs:
 
       - name: Build Dashboard Image
         run: docker build -f Dockerfile.streamlit -t delivery-dashboard:latest .
+
+      - name: Run Tests
+        run: |
+          python -m pytest tests/  
