@@ -21,7 +21,7 @@ Is this good? For delivery time prediction - yes, it's a decent result. Most fac
 ```
 ┌─────────────────┐      HTTP/REST       ┌──────────────────┐
 │   Streamlit     │ ◄──────────────────► │   FastAPI        │
-│   Dashboard     │     (httpx)       │   Backend        │
+│   Dashboard     │     (httpx)          │   Backend        │
 │   Port: 8501    │                      │   Port: 8000     │
 └─────────────────┘                      └──────────────────┘
                                                    │
