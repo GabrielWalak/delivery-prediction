@@ -139,7 +139,7 @@ engine = PredictionEngine()
 async def startup():
     """Initialize prediction engine on startup."""
     try:
-        await engine.initialize()
+        engine.train()  # Changed from engine.initialize()
     except Exception as e:
         print(f"Failed to initialize prediction engine: {e}")
 

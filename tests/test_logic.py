@@ -19,20 +19,13 @@ client = TestClient(app)
 @pytest.fixture(autouse=True)
 def mock_prediction_engine():
     """Mock the PredictionEngine to avoid Kaggle downloads in tests."""
-    with patch.object(PredictionEngine, '__init__', return_value=None):
-        with patch.object(PredictionEngine, 'is_ready', return_value=True):
-            with patch.object(PredictionEngine, 'get_metrics', return_value={
-                "records": 100000,
-                "r2_score": 0.85,
-                "mae": 3.5
-            }):
-                with patch.object(PredictionEngine, 'predict', return_value={
-                    "predicted_days": 7.5,
-                    "r2_score": 0.85,
-                    "mae": 3.5,
-                    "warnings": []
-                }):
-                    yield
+    with patch.object(PredictionEngine, 'train', return_value=None):
+        # Mock instance attributes
+        with patch.object(PredictionEngine, 'ready', True, create=True):
+            with patch.object(PredictionEngine, 'record_count', 100000, create=True):
+                with patch.object(PredictionEngine, 'metrics', {"r2": 0.85, "mae": 3.5}, create=True):
+                    with patch.object(PredictionEngine, 'predict', return_value=7.5):
+                        yield
 
 
 def test_root_endpoint():
@@ -84,17 +77,16 @@ def test_prediction_endpoint_invalid_payload():
     """Test prediction with missing required fields."""
     payload = {
         "product_weight_g": 1200.0,
-        # Missing other required fields
     }
     
     response = client.post("/predict", json=payload)
-    assert response.status_code == 422  # Unprocessable Entity
+    assert response.status_code == 422
 
 
 def test_prediction_endpoint_invalid_values():
     """Test prediction with out-of-range values."""
     payload = {
-        "product_weight_g": -100.0,  # Negative weight (invalid)
+        "product_weight_g": -100.0,
         "product_vol_cm3": 4500.0,
         "distance_km": 800.0,
         "customer_lat": -23.55,
@@ -112,12 +104,12 @@ def test_prediction_endpoint_invalid_values():
 
 
 def test_prediction_endpoint_invalid_coordinates():
-    """Test prediction with invalid latitude/longitude."""
+    """Test prediction with invalid latitude."""
     payload = {
         "product_weight_g": 1200.0,
         "product_vol_cm3": 4500.0,
         "distance_km": 800.0,
-        "customer_lat": 95.0,  # Invalid latitude (> 90)
+        "customer_lat": 95.0,
         "customer_lng": -46.63,
         "seller_lat": -23.95,
         "seller_lng": -46.33,
